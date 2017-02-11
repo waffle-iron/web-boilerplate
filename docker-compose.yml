@@ -1,0 +1,22 @@
+# this is our development docker-compose building on top of the prodicker docker-compose, just mounting
+# the sync image - not redefining anything else
+
+version: "3"
+
+services:
+  web:
+    image: web-boilerplate
+    build: .
+    command: yarn start
+    ports:
+      - '8080:8080'
+    volumes:
+      - .:/app:rw
+    depends_on:
+      - install
+  install:
+    build: .
+    image: web-boilerplate
+    command: yarn
+    volumes:
+      - .:/app:rw
