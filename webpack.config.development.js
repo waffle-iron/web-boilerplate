@@ -1,12 +1,11 @@
 var webpack = require('webpack');
 var config = require('./webpack.config.base');
 
-config.entry.unshift('webpack/hot/only-dev-server');
-config.entry.unshift('webpack-dev-server/client?http://localhost:8080');
+config.devtool = 'inline-source-map';
 
 config.devServer = {
-  hot: true,
-  inline: true
+  host: '0.0.0.0',
+  hot: true
 };
 
 config.plugins.unshift(new webpack.HotModuleReplacementPlugin());
